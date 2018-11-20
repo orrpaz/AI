@@ -13,7 +13,7 @@ public class java_ex1 {
 
         // read from file.
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("input_elad1.txt"));
 
             String st = reader.readLine();
             while (st != null) {

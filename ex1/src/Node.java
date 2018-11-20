@@ -4,6 +4,9 @@ public class Node {
     private char move;
     private int depth;
 
+
+    private int timeStamp;
+
     /**
      * constructor.
      * @param state state
@@ -14,6 +17,7 @@ public class Node {
         this.state = state;
         parent = node;
         move = c;
+        timeStamp = 0;
         if (parent == null) {
             this.depth = 0;
         } else {
@@ -53,6 +57,13 @@ public class Node {
         return depth;
     }
 
+    public int getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setIimeStamp(int timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 
 
     public String toString(){

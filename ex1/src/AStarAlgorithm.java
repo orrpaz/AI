@@ -6,41 +6,55 @@ import java.util.Queue;
  */
 public class AStarAlgorithm extends AbstractAlgorithm {
 
-    IHeuristic heuristic;
+    private IHeuristic heuristic;
     private int count;
-    Queue<Node> priorityQueue ;
+    private Queue<Node> priorityQueue;
+    private int timeStamp;
+
     public AStarAlgorithm(ILogic logic,Node node,IHeuristic heuristic){
         super(node,logic);
         this.count = 0;
+        this.timeStamp = 0;
         this.heuristic = heuristic;
 //        this.node = node;
-        priorityQueue = new PriorityQueue<>(new Comparator<Node>() {
-            @Override
-            public int compare(Node o1, Node o2) {
-                return getF(o1) - getF(o2);
-            }
-        });
+        priorityQueue = new PriorityQueue<>((o1, o2) -> {
+            int result = evaluateFunctionF(o1) - evaluateFunctionF(o2);
+            if (result != 0) {
+                return result;
+            } else {
+                int resultPriority = o1.getTimeStamp() - o2.getTimeStamp();
+                if (resultPriority < 0) {
+                    return -1;
+                }
+                return 1;
+                }
+            });
     }
 
     @Override
     public Solution search() {
+        node.setIimeStamp(timeStamp);
+        timeStamp++;
         priorityQueue.add(node);
         while (!priorityQueue.isEmpty()) {
             Node current = priorityQueue.poll();
+//            current.setPriority(count);
             count++;
             if (logic.isGoalState(current)) {
                 System.out.println(current + " " + current.getDepth() +" "+ count);
                 this.node = current;
                 return new Solution(this.getPath(),count,current.getDepth());
             }
-
-            priorityQueue.addAll(logic.getSuccessors(current));
+            for(Node successor : logic.getSuccessors(current)) {
+                successor.setIimeStamp(timeStamp++);
+                priorityQueue.add(successor);
+            }
 
         }
         return null;
     }
 
-    private int getF(Node node) {
+    private int evaluateFunctionF(Node node) {
         return node.getDepth() + this.heuristic.heuristicDistanceSum(node,logic.getSize());
     }
 
