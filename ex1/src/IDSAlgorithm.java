@@ -1,15 +1,14 @@
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
-import java.util.concurrent.LinkedBlockingQueue;
-
+/**
+ * this class represent IDS Algorithm
+ */
 public class IDSAlgorithm extends AbstractAlgorithm {
     private int count;
     private Stack<Node> openList;
 
 
-    public IDSAlgorithm(Logic logic, Node node) {
+    public IDSAlgorithm(ILogic logic, Node node) {
         super(node,logic);
         this.count = 0;
         this.openList = new Stack<>();
@@ -39,9 +38,8 @@ public class IDSAlgorithm extends AbstractAlgorithm {
         while (!openList.isEmpty()) {
             count++;
             Node current = openList.pop();
-            System.out.println(current + " " + current.getDepth());
 
-            if (logic.isGoalStae(current)) {
+            if (logic.isGoalState(current)) {
                 this.node = current;
                 return new Solution(this.getPath(),count,current.getDepth());
             }
@@ -53,11 +51,6 @@ public class IDSAlgorithm extends AbstractAlgorithm {
              for(int i = successors.size()-1; i>=0; i--){
                  openList.push(successors.get(i));
              }
-
-//            openList.addAll(logic.getSuccessors(current));
-
-
-
         }
         count = 0;
         return null;

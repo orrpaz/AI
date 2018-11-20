@@ -1,13 +1,15 @@
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
-
+/**
+ * this class represent  BFS Algorithm
+ */
 public class BFSAlgorithm extends AbstractAlgorithm {
 
 
     private int count;
 //    protected Node node;
-    public BFSAlgorithm(Logic logic,Node node){
+    public BFSAlgorithm(ILogic logic,Node node){
         super(node,logic);
         this.count = 0;
 //        this.node = node;
@@ -20,7 +22,7 @@ public class BFSAlgorithm extends AbstractAlgorithm {
         while(!queue.isEmpty()) {
             current = queue.poll();
             count++;
-            if (logic.isGoalStae(current)) {
+            if (logic.isGoalState(current)) {
                 node = current;
                return new Solution(this.getPath(),count,0);
 //                System.out.println(this.getPath());

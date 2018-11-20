@@ -1,10 +1,13 @@
+
+/**
+ * this class implement IHeuristic - ManhattanHeuristic .
+ */
 public class ManhattanHeuristic implements IHeuristic{
-    Logic logic;
-    public ManhattanHeuristic(Logic logic){
+   private ILogic logic;
+    public ManhattanHeuristic(ILogic logic){
         this.logic = logic;
 
     }
-
 
     @Override
     public int heuristicDistance(int size, int i,int j) {

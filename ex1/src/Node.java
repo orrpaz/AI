@@ -4,7 +4,12 @@ public class Node {
     private char move;
     private int depth;
 
-
+    /**
+     * constructor.
+     * @param state state
+     * @param node noce
+     * @param c char thar symbolize which move we did to get this node.
+     */
     public Node(int[] state, Node node,char c){
         this.state = state;
         parent = node;
@@ -16,36 +21,39 @@ public class Node {
         }
     }
 
+    /**
+     *
+     * @return state.
+     */
     public int[] getState() {
         return state;
     }
 
-    public void setState(int[] state) {
-        this.state = state;
-    }
-
+    /**
+     *
+     * @return father node
+     */
     public Node getFather() {
         return parent;
     }
 
-    public void setFather(Node root) {
-        this.parent = root;
-    }
-
+    /**
+     *
+     * @return move
+     */
     public char getMove() {
         return move;
     }
 
-    public void setMove(char move) {
-        this.move = move;
-    }
+    /**
+     *
+     * @return depth.
+     */
     public int getDepth() {
         return depth;
     }
 
-    public void setDepth(int depth) {
-        this.depth = depth;
-    }
+
 
     public String toString(){
         String res="";

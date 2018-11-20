@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * this class represent logic of game.
+ */
 public class Logic implements ILogic{
 
     private int size;
@@ -61,6 +64,7 @@ public class Logic implements ILogic{
     }
 
     public Node moveUp(int space, Node father){
+        // create copy of array and swap between suitable place.
         int[] b = Arrays.copyOf(father.getState(), father.getState().length);
          b[space] = b[space+size];
          b[space+size] = 0;
@@ -69,6 +73,7 @@ public class Logic implements ILogic{
     }
 
     public Node moveDown(int space, Node father){
+        // create copy of array and swap between suitable place.
         int[] b = Arrays.copyOf(father.getState(), father.getState().length);
         b[space] = b[space-size];
         b[space-size] = 0;
@@ -78,6 +83,7 @@ public class Logic implements ILogic{
     }
 
     public Node moveLeft(int space, Node father){
+        // create copy of array and swap between suitable place.
         int[] b = Arrays.copyOf(father.getState(), father.getState().length);
         b[space] = b[space+1];
         b[space+1] = 0;
@@ -85,6 +91,7 @@ public class Logic implements ILogic{
 
     }
     public Node moveRight(int space, Node father){
+        // create copy of array and swap between suitable place.
         int[] b = Arrays.copyOf(father.getState(), father.getState().length);
         b[space] =b[space-1];
         b[space-1] = 0;
@@ -96,7 +103,7 @@ public class Logic implements ILogic{
         return size;
     }
 
-    public boolean isGoalStae(Node node){
+    public boolean isGoalState(Node node){
         return Arrays.equals(node.getState(),this.getGoalState());
     }
 

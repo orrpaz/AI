@@ -1,32 +1,41 @@
+/**
+ * this class represent Solution.
+ */
 public class Solution {
-    String path;
-    int countNode;
-    int cost;
+    private String path;
+    private int countNode;
+    private int cost;
 
+    /**
+     * getters.
+     * @return string
+     */
     public String getPath() {
         return path;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
+    /**
+     * getters.
+     * @return int
+     */
     public int getCountNode() {
         return countNode;
     }
 
-    public void setCountNode(int countNode) {
-        this.countNode = countNode;
-    }
-
+    /**
+     * getters.
+     * @return int
+     */
     public int getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
+    /**
+     * constructor
+     * @param path path
+     * @param count count
+     * @param cost cost
+     */
     public Solution(String path, int count, int cost){
         this.cost = cost;
         this.path = path;
