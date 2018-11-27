@@ -15,7 +15,7 @@ abstract class AbstractAlgorithm {
         this.logic = logic;
     }
 
-    /**on
+    /**
      * search the solution of game.
      * @return soluti
      */

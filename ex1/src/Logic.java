@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * this class represent logic of game.
+ * this class represent logic of game. description of method in ILogic
  */
 public class Logic implements ILogic{
 
@@ -32,20 +32,20 @@ public class Logic implements ILogic{
         int space = findSpace(node);
 
         // can move up.
-        if(space < size * (size-1)){
-            list.add(moveUp(space,node));
+        if(space < size * (size - 1)){
+            list.add(moveUp(space, node));
         }
         // can move down.
         if(space >= size){
-            list.add(moveDown(space,node));
+            list.add(moveDown(space, node));
         }
         // can move left
-        if(space % size != size -1) {
-            list.add(moveLeft(space,node));
+        if(space % size != size -1 ) {
+            list.add(moveLeft(space, node));
         }
         // can move right.
         if(space % size != 0){
-            list.add(moveRight(space,node));
+            list.add(moveRight(space, node));
         }
 
 

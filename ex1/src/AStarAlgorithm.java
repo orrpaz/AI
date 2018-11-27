@@ -41,9 +41,9 @@ public class AStarAlgorithm extends AbstractAlgorithm {
 //            current.setPriority(count);
             count++;
             if (logic.isGoalState(current)) {
-                System.out.println(current + " " + current.getDepth() +" "+ count);
+//                System.out.println(current + " " + current.getDepth() +" "+ count);
                 this.node = current;
-                return new Solution(this.getPath(),count,current.getDepth());
+                return new Solution(this.getPath(),count,this.node.getDepth());
             }
             for(Node successor : logic.getSuccessors(current)) {
                 successor.setIimeStamp(timeStamp++);
