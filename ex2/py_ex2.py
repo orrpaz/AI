@@ -1,3 +1,4 @@
+import math
 
 from DecisionTree import DecisionTree
 from KNearestNeighbors import KNearestNeighbors
@@ -10,9 +11,9 @@ def main():
     # DTL
     dtl = DecisionTree()
     tree = dtl.build(data_train, attributes_train)
-    f = open("output_tree.txt", "w")
-    dtl.write_tree_to_file(f, tree, attributes_train, 0)
-    f.close()
+    with open("output_tree.txt", "w") as file:
+        tree_string = dtl.write_tree_to_file(tree, attributes_train, 0)
+        file.write(tree_string[:len(tree_string)-1])
     # KNN
     knn = KNearestNeighbors(attributes_train, data_train)
     # NAIVE BAYES
@@ -43,13 +44,15 @@ def main():
     acc_knn /= len(real_classify)
     acc_nb /= len(real_classify)
     acc_dtl /= len(real_classify)
+    acc_knn = float(math.ceil(acc_knn * 100)) / float(100)
+    acc_nb = float(math.ceil(acc_nb * 100)) / float(100)
+    acc_dtl = float(math.ceil(acc_dtl * 100)) / float(100)
 
     with open('output.txt', 'w') as output:
         output.write("Num\tDT\tKNN\tnaiveBase\n")
         for i,(a, b, c) in (enumerate(zip(dtl_result, knn_result, naive_bayes_result))):
             output.write(str(i+1) + "\t" + a + "\t" + b + "\t" + c + "\n")
-        output.write("\t" + str(float("{0:.2f}".format(acc_dtl))) + "\t" + str(float("{0:.2f}".format(acc_knn))) + "\t"
-                     + str(float("{0:.2f}".format(acc_nb))) + "\n")
+        output.write("\t" + str(acc_dtl) + "\t" + str(acc_knn) + "\t" + str(acc_nb) + "\n")
 
 
 def read_from_file(file_name):

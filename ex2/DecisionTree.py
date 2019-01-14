@@ -1,7 +1,5 @@
 import math
 
-
-
 class DecisionTree:
     def __init__(self):
         self.values = {}
@@ -136,7 +134,6 @@ class DecisionTree:
                     best = attr
         return best
 
-
     def entropy(self, data, attributes, target_attribute):
         """
         this method calc the entropy
@@ -145,14 +142,14 @@ class DecisionTree:
         @param target_attribute: target_attribute
         @return: the entropy
         """
-        dataEntropy = 0.0
+        data_entropy = 0.0
         index = attributes.index(target_attribute)
         frequent = self.calc_freq(data, index)
             # Calculate the entropy
         for freq in frequent.values():
-            dataEntropy += (-freq / len(data)) * math.log(freq / len(data), 2)
+            data_entropy += (-freq / len(data)) * math.log(freq / len(data), 2)
 
-        return dataEntropy
+        return data_entropy
 
     def information_gain(self, data, attributes, attr, targetAttr):
         """
@@ -193,30 +190,31 @@ class DecisionTree:
         return frequent
 
 
-    def write_tree_to_file(self,f, tree_result, attr, i=0, parent=""):
+    def write_tree_to_file(self, tree_result, attr, i=0, parent=""):
         """
         this method write to file.
-        @param f:
-        @param tree_result:
-        @param attr:
-        @param i:
-        @param parent:
-        @return:
+        @param tree_result: tree dict of dict
+        @param attr: attribute
+        @param i: depth
+        @param parent: parent
         """
-
+        string =""
         # isinstance(tree_result, dict) and not isinstance(tree_result, list):
-        if tree_result in ['yes', 'no','true','false']:
-            f.write(":" + tree_result + "\n")
+        if tree_result in ['yes', 'no', 'true', 'false']:
+            string += (":" + tree_result + "\n")
         else:
             for key in sorted(tree_result):
                 if (key in attr) and (key in tree_result) and parent:
-                    f.write("\n")
+                    string += "\n"
                 if parent in attr:
-                    f.write("\t" * (i - 1) + ["|" if i != 1 else ""][0] + str(parent))
+                    string += "\t" * (int(i/2)) + ["|" if i != 1 else ""][0] + str(parent)
                 if key not in attr:
-                    f.write("=" + str(key))
-                if not isinstance(tree_result, list):
-                    self.write_tree_to_file(f, tree_result[key], attr, i + 1, key)
+                    string += "=" + str(key)
+                if tree_result not in ['yes', 'no', 'true', 'false']:
+                    string += self.write_tree_to_file(tree_result[key], attr, i + 1, key)
+        return string
+
+
 
     def predict(self,tree_result, entry, attributes):
         """

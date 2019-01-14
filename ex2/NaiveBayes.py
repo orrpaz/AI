@@ -36,18 +36,18 @@ class NaiveBayes:
         and put it in possible dict.
         @return:
         """
-        for feature_index in range(len(self.attributes)-1):
-            domain = set([example[feature_index] for example in self.data[:-1]])
-            self.possible[feature_index] = len(domain)
+        for index in range(len(self.attributes)-1):
+            domain = set([example[index] for example in self.data[:-1]])
+            self.possible[index] = len(domain)
 
-    def calc_prob(self ,entry, classification):
+    def calc_prob(self,entry, classification):
         """
         this method calc the prob of each entry with certain classification.
         @param entry: line in test data
-        @param tag: dict that key is certain classification and value is all entrys the suit to it
+        @param classification: dict that key is certain classification and value is all entrys the suit to it
         @return: the prob with smoothing
         """
-        conditioned_prob_list = []
+        prob_list = []
         res = 1
         classification_group_size = len(classification)
         # computes conditioned probability.
@@ -58,10 +58,10 @@ class NaiveBayes:
             for train_example in classification:
                 if train_example[feature_index] == entry[feature_index]:
                     counter += 1
-            conditioned_prob_list.append(float(counter) / (classification_group_size + attr_size))
+            prob_list.append(float(counter) / (classification_group_size + attr_size))
         prior = float(len(classification)) / len(self.data)
 
-        for x in conditioned_prob_list:
+        for x in prob_list:
             res = res * x
         return res * prior
 
