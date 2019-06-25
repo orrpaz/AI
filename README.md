@@ -1,7 +1,7 @@
 # AI
 
 
-#EX1
+EX1
 
 "N-Puzzle" solver using IDS, BFS and A*(with using manhattan Huristic) algorithms.
 
@@ -9,6 +9,6 @@ Running main_ex1.java looking for a file "input.txt". The input will be: first l
 
 The output file will be one line contains the operations (U, D ,L, R) as the solution, number of developed nodes and the cost of the solution.
 
-#EX2
+EX2
 
 3 prediction algorithms for data sets: KNN, IT3 and Navie Bayse
